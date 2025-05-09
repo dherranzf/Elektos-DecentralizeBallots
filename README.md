@@ -31,9 +31,10 @@ A **Solidity-based** modular voting system designed for flexibility and extensib
    - The voting logic in the `Ballot` contract is completely separated from the voter registry logic.
    - This ensures that the `Ballot` contract focuses solely on managing proposals and votes, while the voter registry handles eligibility and voting status.
 
-3. **Interface and Implementations for Voter Registries**:
+3. **Strategy Pattern for Voter Registries**:
    - The `IVoterRegistry` interface defines a standard for voter registries.
-   - Multiple implementations, such as `AddressBasedVoterRegistry` and `TokenBasedVoterRegistry`, allow flexibility in determining voter eligibility.
+   - Multiple implementations, such as `AddressBasedVoterRegistry` and `TokenBasedVoterRegistry`, represent different strategies for determining voter eligibility.
+   - The `Ballot` contract interacts with the voter registry through the `IVoterRegistry` interface, allowing the system to switch between different voter registry strategies without modifying the `Ballot` contract.
    - This modular approach enables the system to support additional voter registry mechanisms in the future.
 
 ### Key Contracts
@@ -60,8 +61,8 @@ A **Solidity-based** modular voting system designed for flexibility and extensib
 | **Remix**        | A powerful web-based IDE for writing, testing, and deploying smart contracts.                            |
 
 ### Design Practices
-- **Interface-Driven Design**: Uses the `IVoterRegistry` interface to decouple the `Ballot` contract from specific voter registry implementations.
 - **Factory Pattern**: Simplifies the creation and management of multiple ballots.
+- **Strategy Pattern**: Allows the system to use different voter registry mechanisms (e.g., address-based or token-based) without modifying the core voting logic.
 - **Event Logging**: Implements detailed event logging for all critical operations to enhance transparency and traceability.
 
 ## 🗂️ Project Structure
