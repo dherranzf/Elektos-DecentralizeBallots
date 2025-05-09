@@ -22,6 +22,20 @@ A **Solidity-based** modular voting system designed for flexibility and extensib
 
 ## 📐 Architecture Overview
 
+### Key Design Patterns and Principles
+1. **Factory Pattern for Ballot Creation**:
+   - The `BallotFactory` contract is used to create multiple `Ballot` instances dynamically.
+   - This pattern centralizes the creation logic, making it easier to manage and scale the system.
+
+2. **Decoupled Voting Logic**:
+   - The voting logic in the `Ballot` contract is completely separated from the voter registry logic.
+   - This ensures that the `Ballot` contract focuses solely on managing proposals and votes, while the voter registry handles eligibility and voting status.
+
+3. **Interface and Implementations for Voter Registries**:
+   - The `IVoterRegistry` interface defines a standard for voter registries.
+   - Multiple implementations, such as `AddressBasedVoterRegistry` and `TokenBasedVoterRegistry`, allow flexibility in determining voter eligibility.
+   - This modular approach enables the system to support additional voter registry mechanisms in the future.
+
 ### Key Contracts
 1. **`IVoterRegistry`**: Interface defining the voter registry contract structure.
 2. **`AddressBasedVoterRegistry`**: Implements voter registration based on addresses.
